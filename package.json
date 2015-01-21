@@ -1,0 +1,32 @@
+{
+  "name": "or-awp",
+  "version": "1.0.2",
+  "description": "awp 命令行自动发布工具",
+  "main": "index.js",
+  "bin": {
+    "awp": "bin/awp.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:one-request/or-awp.git"
+  },
+  "keywords": [
+    "awp"
+  ],
+  "readmeFilename": "README.md",
+  "author": "cenan.chr@alibaba-inc.com",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "commander": "^2.3.0",
+    "crypto": "0.0.3",
+    "git-config": "0.0.6",
+    "inquirer": "^0.6.0",
+    "request": "^2.40.0",
+    "glob": "^4.3.5",
+    "fs-extra": "^0.14.0"
+  }
+}
