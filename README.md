@@ -1,6 +1,20 @@
 # or-awp
 
-V1.0.2
+V1.0.31
+
+[![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Downloads][downloads-image]][downloads-url]
+
+[npm-image]: https://img.shields.io/npm/v/or-awp.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/or-awp
+[travis-image]: https://img.shields.io/travis/hongru/or.awp.svg?style=flat-square
+[travis-url]: https://travis-ci.org/hongru/or.awp
+[coveralls-image]: https://img.shields.io/coveralls/hongru/or.awp.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/hongru/or.awp
+[downloads-image]: http://img.shields.io/npm/dm/or-awp.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/or-awp
 
 `One-Request` 组件之一，智能一键发布页面到[AWP](http://h5.taobao.org)工具。
 感谢航旅的[awpp](http://gitlab.alibaba-inc.com/trip-tools/awpp/tree/master)。在此基础上做了大量的优化和改进，修复bug，增加稳定性和易用性。

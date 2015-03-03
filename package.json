@@ -1,17 +1,18 @@
 {
   "name": "or-awp",
-  "version": "1.0.2",
+  "version": "1.0.31",
   "description": "awp 命令行自动发布工具",
   "main": "index.js",
   "bin": {
     "awp": "bin/awp.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test-travis": "node node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --reporter dot"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.alibaba-inc.com:one-request/or-awp.git"
+    "url": "git@github.com:hongru/or.awp.git"
   },
   "keywords": [
     "awp"
@@ -28,5 +29,10 @@
     "request": "^2.40.0",
     "glob": "^4.3.5",
     "fs-extra": "^0.14.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.6",
+    "coveralls": "^2.10.0",
+    "mocha": "^2.1.0"
   }
 }
