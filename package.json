@@ -1,6 +1,6 @@
 {
   "name": "or-awp",
-  "version": "1.0.31",
+  "version": "1.0.4",
   "description": "awp 命令行自动发布工具",
   "main": "index.js",
   "bin": {
@@ -28,7 +28,8 @@
     "inquirer": "^0.6.0",
     "request": "^2.40.0",
     "glob": "^4.3.5",
-    "fs-extra": "^0.14.0"
+    "fs-extra": "^0.14.0",
+    "iconv-lite": "~0.4.10"
   },
   "devDependencies": {
     "istanbul": "^0.3.6",

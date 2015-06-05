@@ -5,6 +5,7 @@ var fs = require('fs');
 var request = require('request');
 var chalk = require('chalk');
 var crypto = require('crypto');
+var iconv = require('iconv-lite');
 
 
 function md5 (s) {
@@ -52,14 +53,15 @@ function Pub2awp (opt, success, fail) {
      */
 
     var defaults = {
+        _input_charset: 'GBK',
         api: 'push_file',
         t: Date.now(),
         operator: null, //花名，必须
+        webappId: null,
         token: null, // 日常或者线上的发布者awp token
         data: {
                 uri: null, // 必须 发布路径
                 operator: null, // 必须
-                data: null, // 必须 file content
                 isPub: true, // 发布或者预览
                 webappId: null,// 必须
                 pageData: {
@@ -76,13 +78,27 @@ function Pub2awp (opt, success, fail) {
     this.successCallback = success;
     this.failCallback = fail;
 
+    //iconv 转换gbk文件
+    this.createGbkTemp();
+
     var requestUri = this.getRequestUri(opt.env, opt.appid);
     var requestParam = this.getRequestParam(defaults, opt);
+
     //console.log(requestUri, requestParam)
     this.request(requestUri, requestParam);
 }
 
 Pub2awp.prototype = {
+    createGbkTemp: function () {
+        var opt = this.option;
+        var filecon = fs.readFileSync(opt.filePath, {encoding:'utf8'});
+        if (opt.env == 'wapp' || opt.env == 'm') {
+            filecon = filecon.replace(/(g\.assets\.daily\.taobao\.net|g\-assets\.daily\.taobao\.net)/g, 'g.alicdn.com');
+        }
+        var gbkfilecon = iconv.encode(filecon, 'GBK');
+        this.tempFilepath = opt.filePath + '.temp';
+        fs.writeFileSync(this.tempFilepath, gbkfilecon);
+    },
     getRequestUri: function (p, appid) {
         var map = {
             'waptest': 'daily.',
@@ -90,7 +106,7 @@ Pub2awp.prototype = {
             'wapp': '',
             'm': ''
         };
-        return 'http://' + map[p] + 'h5.taobao.org/api/api.do?_input_charset=utf-8&api=push_file&webappId=' + appid;
+        return 'http://' + map[p] + 'h5.taobao.org/api/api.do';
     },
     getRequestParam: function (defaults, opt) {
         if (!opt.publishDir) opt.publishDir = '';
@@ -100,9 +116,14 @@ Pub2awp.prototype = {
         defaults.token = opt.token;
         defaults.data.uri = (opt.publishDir.replace(/\/$/, '') + '/' + path.basename(opt.filePath)).replace(/^\//, '');
         defaults.data.operator = opt.operator;
-        defaults.data.data = fs.readFileSync(opt.filePath, {encoding:'utf8'});
+        //更新，不再用字符串上传的形式，会有乱码影响token，改用基于GBK的文件流
+        //defaults.data.data = fs.readFileSync(opt.filePath, {encoding:'utf8'});
+        defaults.fileData = fs.createReadStream(this.tempFilepath);
+        //console.log(this.tempFilepath, defaults.fileData, fs.readFileSync(this.tempFilepath, 'utf-8'))
+
         defaults.data.isPub = !(opt.env === 'wapp');
         defaults.data.webappId = opt.appid;
+        defaults.webappId = opt.appid;
 
         Object.keys(defaults.data.pageData).forEach(function (key) {
             if (key in opt) {
@@ -124,8 +145,9 @@ Pub2awp.prototype = {
                 'X-Forwarded-For': '10.232.135.52' // 通用跳板机
             },
             url: uri,
-            form: param,
-            encoding: 'utf8',
+            //form: param,
+            formData: param,
+            //encoding: 'utf8',
             json: true
         }, function (err, response, ret) {
             if (err) {
@@ -135,6 +157,7 @@ Pub2awp.prototype = {
                 // 发布失败
                 console.log(chalk.red.bold('[Fail] ') + me.option.filePath);
                 console.log(chalk.red.bold(ret.msg.replace(/\n/igm, '')));
+                //console.log(ret);
                 me.failCallback && me.failCallback();
             } else {
                 // 发布成功

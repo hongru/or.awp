@@ -1,6 +1,8 @@
 # or-awp
 
-V1.0.31
++ V1.0.4 升级，服务端接口升级，抛弃字符串上传的方式，基于文件流，可以避免一些特殊字符引发token校验的问题。
+
+
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
@@ -136,3 +138,4 @@ $ awp -h
 ## 注意
 
 + 发布到线上的时候只能自动提交发布单，摩天轮的性能校验还是逃不过，awp不开放直接绕过性能校验的功能。
+
