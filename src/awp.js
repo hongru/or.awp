@@ -168,6 +168,8 @@ Pub2awp.prototype = {
                 }
                 me.successCallback && me.successCallback();
             }
+
+            fs.unlinkSync(me.tempFilepath);
         });
     }
 }
