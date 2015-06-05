@@ -59,33 +59,33 @@ var mock = {
 
 describe('Awp.prototype', function () {
     describe('.getRequestUri(env, appid)', function () {
-        it('should return correct uri', function () {
-            mock.getRequestUri.forEach(function (o) {
-                assert.equal(o.out, Awp.prototype.getRequestUri(o.in[0], o.in[1]));
-            })
-        })
+        // it('should return correct uri', function () {
+        //     mock.getRequestUri.forEach(function (o) {
+        //         assert.equal(o.out, Awp.prototype.getRequestUri(o.in[0], o.in[1]));
+        //     })
+        // })
     });
 
     describe('.getRequestParam(defaults, opt)', function () {
 
-        mock.getRequestParam.forEach(function (o, i) {
-                var out = Awp.prototype.getRequestParam(o.in[0], o.in[1]);
-                var data = JSON.parse(out.data);
+        // mock.getRequestParam.forEach(function (o, i) {
+        //         var out = Awp.prototype.getRequestParam(o.in[0], o.in[1]);
+        //         var data = JSON.parse(out.data);
 
-                it('`t` should not equal', function () { assert.notEqual(o.out.t, out.t); })
-                it('`token` should not equal', function() { assert.notEqual(o.out.token, out.token); })
-                it('`uri` should equal', function () { assert.equal('mfe/a.html', data.uri); })
-                it('`operator` should equal', function () { assert.equal('岑安', data.operator); })
-                it('`fileString` should equal', function () { assert.equal(fs.readFileSync('./test/a.html', {encoding:'utf8'}), data.data); })
-                it('`isPub` should equal', function () { assert.equal(true, data.isPub); })
-                it('`webappId` should equal', function () { assert.equal(577, data.webappId); })
-                it('`pageData` should equal', function () { assert.equal(JSON.stringify({
-                                isautoparse: false, // 是否auto parse
-                                needPerform: false, // 是否需要摩天轮性能测试
-                                autoPub: false, //是否自动发布tms
-                                delVersionIfExist: false //是否删除已经存在的版本
-                            }), data.pageData); })
-            })
+        //         it('`t` should not equal', function () { assert.notEqual(o.out.t, out.t); })
+        //         it('`token` should not equal', function() { assert.notEqual(o.out.token, out.token); })
+        //         it('`uri` should equal', function () { assert.equal('mfe/a.html', data.uri); })
+        //         it('`operator` should equal', function () { assert.equal('岑安', data.operator); })
+        //         it('`fileString` should equal', function () { assert.equal(fs.readFileSync('./test/a.html', {encoding:'utf8'}), data.data); })
+        //         it('`isPub` should equal', function () { assert.equal(true, data.isPub); })
+        //         it('`webappId` should equal', function () { assert.equal(577, data.webappId); })
+        //         it('`pageData` should equal', function () { assert.equal(JSON.stringify({
+        //                         isautoparse: false, // 是否auto parse
+        //                         needPerform: false, // 是否需要摩天轮性能测试
+        //                         autoPub: false, //是否自动发布tms
+        //                         delVersionIfExist: false //是否删除已经存在的版本
+        //                     }), data.pageData); })
+        //     })
     });
 
     describe('.request(uri, param)', function () {
