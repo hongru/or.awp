@@ -8,6 +8,7 @@
 [![Build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Downloads][downloads-image]][downloads-url]
+![cise](http://cise.alibaba-inc.com/task/68878/status.svg)
 
 [npm-image]: https://img.shields.io/npm/v/or-awp.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/or-awp
