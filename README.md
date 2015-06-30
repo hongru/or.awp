@@ -1,7 +1,7 @@
 # or-awp
 
 + V1.0.4 升级，服务端接口升级，抛弃字符串上传的方式，基于文件流，可以避免一些特殊字符引发token校验的问题。
-
++ 1.0.5 cise 接入。
 
 
 [![NPM version][npm-image]][npm-url]
@@ -18,6 +18,10 @@
 [coveralls-url]: https://coveralls.io/r/hongru/or.awp
 [downloads-image]: http://img.shields.io/npm/dm/or-awp.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/or-awp
+
+>
+更新 test Case，由于发布接口只在Ali内网工作，所以 travis 的ci没有办法通过，只要 CISE 的构建status ![cise](http://cise.alibaba-inc.com/task/68878/status.svg) 是成功即可。
+
 
 `One-Request` 组件之一，智能一键发布页面到[AWP](http://h5.taobao.org)工具。
 感谢航旅的[awpp](http://gitlab.alibaba-inc.com/trip-tools/awpp/tree/master)。在此基础上做了大量的优化和改进，修复bug，增加稳定性和易用性。
