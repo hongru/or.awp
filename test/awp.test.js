@@ -51,6 +51,11 @@ describe('Awp.prototype', function () {
                 // network not work at alibaba-inc. request timeout ignore
                 done();
             });
+
+            setTimeout(function () {
+                // network not work at alibaba-inc. request timeout ignore
+                done();
+            }, 2500)
         })
         
         //console.log(Awp.prototype.getRequestParam(defaults, mockOpt))
