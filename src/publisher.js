@@ -18,7 +18,8 @@ Publisher.prototype = {
         var user = config.getUserConfig();
         var apps = config.getAppConfig().apps;
         var app;
-        for (var i = 0; i < apps.length; i ++) {
+        for (var i = apps.length-1; i >= 0 ; i --) {
+        /* 逆序遍历配置文件，从而使较新的配置能够优先生效 @kongshi 15.7.17 */
             if (apps[i].name === me.opt.group) {
                 app = apps[i];
                 break;
