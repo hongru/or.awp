@@ -1,6 +1,6 @@
 {
   "name": "or-awp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "awp 命令行自动发布工具",
   "main": "index.js",
   "bin": {
