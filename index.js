@@ -1,1 +1,4 @@
-module.exports = require('./src/publisher.js');
+module.exports = {
+  publisher: require('./src/publisher'),
+  config: require('./src/config')
+};
